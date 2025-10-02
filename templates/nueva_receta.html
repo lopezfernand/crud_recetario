@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="surface">
+    <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+      <h1 class="page-title is-size-3">Nueva receta</h1>
+      <a class="button is-link is-light" href="{{ url_for('home') }}">Volver</a>
+    </div>
+
+    <form method="post">
+      <div class="columns">
+        <div class="column is-6">
+          <div class="field">
+            <label class="label">Título *</label>
+            <div class="control">
+              <input class="input" name="titulo" required placeholder="Chilaquiles verdes">
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="field">
+            <label class="label">Categoría</label>
+            <div class="control">
+              <input class="input" name="categoria" placeholder="Desayuno">
+            </div>
+          </div>
+        </div>
+        <div class="column is-1">
+          <div class="field">
+            <label class="label">Min</label>
+            <div class="control">
+              <input class="input" type="number" min="0" name="tiempo_min" placeholder="10">
+            </div>
+          </div>
+        </div>
+        <div class="column is-2">
+          <div class="field">
+            <label class="label">Porciones</label>
+            <div class="control">
+              <input class="input" type="number" min="1" name="porciones" placeholder="2">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Ingredientes</label>
+        <div class="control">
+          <textarea class="textarea" name="ingredientes" rows="4" placeholder="- 3 huevos&#10;- 1 jitomate..."></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Instrucciones</label>
+        <div class="control">
+          <textarea class="textarea" name="instrucciones" rows="6" placeholder="Paso 1, Paso 2..."></textarea>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="button is-primary" type="submit">Guardar</button>
+        <a class="button is-link is-light" href="{{ url_for('home') }}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

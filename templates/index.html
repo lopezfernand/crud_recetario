@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card-soft">
+  <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
+    <h1 class="title is-3" style="margin:0;">Recetas</h1>
+    <a class="button" style="background:#FF7A18;color:#fff;border:none;border-radius:10px;"
+       href="{{ url_for('nueva_receta') }}">Nueva receta</a>
+  </div>
+
+  {% if recetas %}
+  <div class="table-container">
+    <table class="table is-fullwidth is-hoverable">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Categoría</th>
+          <th>Tiempo (min)</th>
+          <th>Porciones</th>
+          <th class="has-text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in recetas %}
+        <tr>
+          <td>{{ r.titulo }}</td>
+          <td>
+            {% if r.categoria %}
+              <span class="pill pill-blue">{{ r.categoria }}</span>
+            {% else %}
+              <span class="has-text-grey-light">—</span>
+            {% endif %}
+          </td>
+          <td>{{ r.tiempo_min or 0 }}</td>
+          <td>{{ r.porciones or 0 }}</td>
+          <td class="actions-cell">
+            <a  class="btn btn-view"   href="{{ url_for('ver_receta', id=r.id) }}">Ver</a>
+            <a  class="btn btn-edit"   href="{{ url_for('editar_receta', id=r.id) }}">Editar</a>
+            <form class="form-inline" action="{{ url_for('eliminar_receta', id=r.id) }}" method="post"
+                  onsubmit="return confirm('¿Eliminar esta receta?');">
+              <button class="btn btn-delete" type="submit">Eliminar</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <article class="message is-info is-light">
+      <div class="message-body">No hay recetas registradas todavía.</div>
+    </article>
+  {% endif %}
+</div>
+
+{% endblock %}

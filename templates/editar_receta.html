@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="title">Editar receta</h1>
+
+<form method="post" class="box">
+  <div class="columns is-multiline">
+    <div class="column is-7">
+      <div class="field">
+        <label class="label">Título</label>
+        <div class="control">
+          <input class="input" name="titulo" required value="{{ receta.titulo }}">
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-3">
+      <div class="field">
+        <label class="label">Categoría</label>
+        <div class="control">
+          <input class="input" name="categoria" value="{{ receta.categoria }}">
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-2">
+      <div class="field">
+        <label class="label">Tiempo (min)</label>
+        <div class="control">
+          <input class="input" type="number" min="0" name="tiempo_min" value="{{ receta.tiempo_min or 0 }}">
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-2">
+      <div class="field">
+        <label class="label">Porciones</label>
+        <div class="control">
+          <input class="input" type="number" min="1" name="porciones" value="{{ receta.porciones or 1 }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Ingredientes</label>
+    <div class="control">
+      <textarea class="textarea" name="ingredientes" rows="4">{{ receta.ingredientes }}</textarea>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Instrucciones</label>
+    <div class="control">
+      <textarea class="textarea" name="instrucciones" rows="6">{{ receta.instrucciones }}</textarea>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="button is-primary" type="submit">Guardar cambios</button>
+    <a class="button is-light" href="{{ url_for('home') }}">Cancelar</a>
+  </div>
+</form>
+
+{% endblock %}
