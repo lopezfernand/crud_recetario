@@ -28,6 +28,12 @@ class Receta(db.Model):
     instrucciones = db.Column(db.Text)
 
 # -----------------------
+# Crear tablas si no existen
+# -----------------------
+with app.app_context():
+    db.create_all()
+
+# -----------------------
 # Evitar caché del navegador
 # -----------------------
 @app.after_request
@@ -86,7 +92,7 @@ def eliminar_receta(id):
     return redirect(url_for("home"))
 
 # -----------------------
-# Run local
+# Run local / Docker
 # -----------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
