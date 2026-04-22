@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 load_dotenv()  # lee variables de .env
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+database_url = os.getenv('DATABASE_URL', 'sqlite:///recetario.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -77,8 +78,8 @@ def editar_receta(id):
         receta.titulo = request.form["titulo"].strip()
         receta.categoria = request.form.get("categoria", "").strip()
         receta.tiempo_min = int(request.form.get("tiempo_min") or 0)
-        receta.porciones  = int(request.form.get("porciones") or 0)
-        receta.ingredientes  = request.form.get("ingredientes", "").strip()
+        receta.porciones = int(request.form.get("porciones") or 0)
+        receta.ingredientes = request.form.get("ingredientes", "").strip()
         receta.instrucciones = request.form.get("instrucciones", "").strip()
         db.session.commit()
         return redirect(url_for("home"))
@@ -95,4 +96,4 @@ def eliminar_receta(id):
 # Run local / Docker
 # -----------------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+   app.run(host="0.0.0.0", port=5001, debug=True)

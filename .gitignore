@@ -13,4 +13,6 @@ __pycache__/
 
 # Editor
 .vscode/
-.python-version 
+.python-version
+
+instance/
