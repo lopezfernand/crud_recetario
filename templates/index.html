@@ -3,7 +3,7 @@
 
 <div class="card-soft">
   <div class="is-flex is-justify-content-space-between is-align-items-center mb-4">
-    <h1 class="title is-3" style="margin:0;">Recetas</h1>
+    <h1 class="title is-3" style="margin:0;">Recetas - prueba webhook</h1>
     <a class="button" style="background:#FF7A18;color:#fff;border:none;border-radius:10px;"
        href="{{ url_for('nueva_receta') }}">Nueva receta</a>
   </div>
@@ -34,8 +34,8 @@
           <td>{{ r.tiempo_min or 0 }}</td>
           <td>{{ r.porciones or 0 }}</td>
           <td class="actions-cell">
-            <a  class="btn btn-view"   href="{{ url_for('ver_receta', id=r.id) }}">Ver</a>
-            <a  class="btn btn-edit"   href="{{ url_for('editar_receta', id=r.id) }}">Editar</a>
+            <a class="btn btn-view" href="{{ url_for('ver_receta', id=r.id) }}">Ver</a>
+            <a class="btn btn-edit" href="{{ url_for('editar_receta', id=r.id) }}">Editar</a>
             <form class="form-inline" action="{{ url_for('eliminar_receta', id=r.id) }}" method="post"
                   onsubmit="return confirm('¿Eliminar esta receta?');">
               <button class="btn btn-delete" type="submit">Eliminar</button>
