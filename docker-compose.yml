@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16
+    container_name: recetario_db
+    environment:
+      POSTGRES_DB: recetario
+      POSTGRES_USER: recetario_user
+      POSTGRES_PASSWORD: recetario_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - red_bd
+
+  app:
+    build: .
+    container_name: crud_recetario_app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://recetario_user:recetario_pass@db:5432/recetario
+    ports:
+      - "5001:5001"
+    networks:
+      - red_bd
+
+volumes:
+  postgres_data:
+
+networks:
+  red_bd:
+    driver: bridge

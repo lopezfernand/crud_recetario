@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Puerto interno donde escucha tu app (app.run(..., port=5000))
-EXPOSE 5000
+EXPOSE 5001
 
 # Comando para arrancar el CRUD de recetario
 CMD ["python", "app.py"]

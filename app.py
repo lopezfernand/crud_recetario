@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 app = Flask(__name__)
 load_dotenv()  # lee variables de .env
 
-database_url = os.getenv('DATABASE_URL', 'sqlite:///recetario.db')
+database_url = os.getenv('DATABASE_URL', 'postgresql://recetario_user:recetario_pass@db:5432/recetario')
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
